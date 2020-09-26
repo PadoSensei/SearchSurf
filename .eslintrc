@@ -9,6 +9,6 @@
     "ecmaVersion": 2018
   },
   "rules": {
-    "no-console": "warning"
+    "no-console": "warn"
   }
 }

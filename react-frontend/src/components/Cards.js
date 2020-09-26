@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState} from 'react';
 import './Cards.css';
 import CardItem from './CardItem';
 import axios from 'axios'
 import { Component } from 'react';
+// import RedisClient from './RedisClient.js'
 
 const waveInfo = 'things I want to say about wave'
 
 export default class Cards extends Component {
   constructor(props) {
     super(props);
-    this.state = {beach: []};
+    this.state = [];
   } 
 
   componentDidMount() {
     axios.get('http://localhost:5000/beaches/Pontal')
      .then(response => {
-       this.setState({beach:response.data});
+       this.setState(response.data);
        console.log("We got data to the frontend console!!")
        console.log(this.state)
      })
@@ -23,17 +24,21 @@ export default class Cards extends Component {
         console.log(error);
         console.log("no data")
      })
-
-     axios.get('http://localhost:5000/beaches/Corals')
-     .then(response => {
-       this.setState(...this.state, {beach:response.data});
-       console.log("We got data to the frontend console!!")
-       console.log(this.state)
-     })
-     .catch((error) => {
-        console.log(error);
-        console.log("no data")
-     })
+    //RedisClient();
+     
+    //  axios.get('http://localhost:5000/beaches/Corals')
+    //  .then(response => {
+    //   this.setState(prevState => {
+    //     const beach = [...prevState, response.data]
+    //   }
+    //   )
+    //    console.log("We got data to the frontend console!!")
+    //    console.log(this.state)
+    //  })
+    //  .catch((error) => {
+    //     console.log(error);
+    //     console.log("no data")
+    //  })
   }
 
   render () {
@@ -59,7 +64,7 @@ export default class Cards extends Component {
           <ul className='cards__items'>
             <CardItem
               src='BeachPictures\banhistas_tiririca_1600x518.jpg'
-              text={this.state.beach.name}
+              text={this.state.name}
               label='Tiririca'
               //path='/Tiririca'
             />
@@ -71,7 +76,7 @@ export default class Cards extends Component {
             />
             <CardItem
               src='BeachPictures\havaizinho_tarek_1600x518.jpg'
-              text={this.state.beach.latestReport}
+              text={this.state.latestReport}
               label='Havaizinho'
               //path='/Havaizinho'
             />

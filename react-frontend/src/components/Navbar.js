@@ -36,8 +36,8 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
+              <Link to='/itacarezinho' className='nav-links' onClick={closeMobileMenu}>
+                Itacarezinho
               </Link>
             </li>
             <li className='nav-item'>
@@ -56,6 +56,33 @@ function Navbar() {
                 onClick={closeMobileMenu}
               >
                 Pontal
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/havaizinho'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Havaizinho
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/saojose'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Sao Jose
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/tiririca'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Tiririca
               </Link>
             </li>
           </ul>
