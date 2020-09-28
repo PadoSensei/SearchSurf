@@ -45,6 +45,7 @@ export default class Cards extends Component {
     return (
     <div className='cards'>
       <h1>Check out these EPIC Beaches!</h1>
+      <p> Welcome to Itacare, where the temprature is currently....</p>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
@@ -66,19 +67,19 @@ export default class Cards extends Component {
               src='BeachPictures\banhistas_tiririca_1600x518.jpg'
               text={this.state.name}
               label='Tiririca'
-              //path='/Tiririca'
+              path='/Tiririca'
             />
             <CardItem
               src='BeachPictures\surf_ribeira.jpg'
               text='Report'
               label='Riberia'
-              //path='/Riberia'
+              path='/Riberia'
             />
             <CardItem
               src='BeachPictures\havaizinho_tarek_1600x518.jpg'
               text={this.state.latestReport}
               label='Havaizinho'
-              //path='/Havaizinho'
+              path='/Havaizinho'
             />
           </ul>
         </div>

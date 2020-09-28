@@ -58,6 +58,9 @@ const latestBeachLinks = [
 //   });
 // };
 
+//main();
+
+
 function getLatest (beachUrl)  {
   request(beachUrl, (error, 
   response, html) => {
@@ -66,35 +69,28 @@ function getLatest (beachUrl)  {
       
       const beachName = $('.break-header__title > b')
       const latest = $('.forecast-seo-paragraph')
-      const waterTemp =$('.temp')
-      const forecast = $('.forecast-seo-paragraph')
-
-      const beach = {
-
-        name: beachName.text(),
-        latestReport: latest.text(),
-        water: waterTemp.html(),
-        //forecastReport: forecast.text()  Needs to scrape from other URL
-      }
-
-      async function sendToRedis() {
+      const waterTemp =$('.temp').html()
+      //const forecast = $('.forecast-seo-paragraph')
     
-        try {
-            const key = beachName.text();
-            const result = await client.set(key, JSON.stringify(beach));
-            console.log(result);
-        }
-        catch (error) {
-            console.error(error);
-        }
-    }
-    sendToRedis();
-    }
-  });
-};
+     
 
+      // client.hmset(beachName.text(), {
+      //   'name': beachName.text(),
+      //   'latest': latest.text(),
+      //   'waterTemp': waterTemp,
+      //   'forecast': forecast.text()
+      // }, function (err, result) {
+      //   if (err) {
+      //     console.log(err)
+      //   } else {
+      //     console.log(result)
+      //   }
+      // });
 
-// Needs to send forecast info to Object
+    }
+  })
+}
+
 function getForecast (beachUrl)  {
   request(beachUrl, (error, 
   response, html) => {
@@ -103,24 +99,37 @@ function getForecast (beachUrl)  {
       
       const beachName = $('.break-header__title > b')
       const forecast = $('.forecast-seo-paragraph')
+
+      client.hmset(beachName.text(), {
+        //   'name': beachName.text(),
+        //   'latest': latest.text(),
+        //   'waterTemp': waterTemp,
+          'forecast': forecast.text()
+        }, function (err, result) {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log(result)
+          }
+        });
   
     }
   });
-};
+}
 
 app.get('/', function(req, res) {
   //res.send('Welcome to SurfSearch!!!');
   
   const target = "Corals"
 
-  client.get(target, (err, data) => {
+  client.HGETALL(target, (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
     //if no match found
     if (data != null) {
-      res.send(JSON.parse(data));
+      res.send(data);
     } else {
       //proceed to next middleware function
       res.send('Sorry, nothing stored. Scraping for data now.....')
@@ -132,14 +141,14 @@ app.get("/beaches/:id", function(req, res) {
   
   const { id } = req.params;
 
-  client.get(id, (err, data) => {
+  client.HGETALL(id, (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
     //if no match found
     if (data != null) {
-      res.send(JSON.parse(data));
+      res.send(data);
     } else {
       //proceed to next middleware function
       res.send('Sorry, nothing stored. Scraping for data now.....')
@@ -167,9 +176,10 @@ app.get("/latest/:id", async(req, res) => {
   });
 })
 
-//forecastBeachLinks.forEach(getForecast);
+//const id = 'Pontal'
+forecastBeachLinks.forEach(getForecast);
 latestBeachLinks.forEach(getLatest);
-
+//console.log(client.HGETALL(id))
 
 app.listen(5000, () => {
   console.log(`App is listening on port ${PORT}.`);
