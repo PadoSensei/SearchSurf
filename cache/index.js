@@ -13,7 +13,7 @@ const client = redis.createClient(REDIS_PORT);
 const app = express();
 app.use(cors())
 
-const forecastBeachLinks =[
+const forecastBeachLinks = [
   'https://www.surf-forecast.com/breaks/Sao-Jose/forecasts/latest/six_day',
   'https://www.surf-forecast.com/breaks/Jeribucacu/forecasts/latest/six_day',
   'https://www.surf-forecast.com/breaks/Tiririca/forecasts/latest/six_day',
@@ -57,7 +57,7 @@ const latestBeachLinks = [
 //   });
 // };
 
-//main();
+
 
 
 function getLatest (beachUrl)  {

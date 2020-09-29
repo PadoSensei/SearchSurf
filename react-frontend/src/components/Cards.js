@@ -53,8 +53,8 @@ export default class Cards extends Component {
   
   render () {
     
-    console.log('comp has remounted.')
-    console.log(beaches)
+    // console.log('comp has remounted.')
+    // console.log(beaches)
    
     return (
     <div className='cards'>
