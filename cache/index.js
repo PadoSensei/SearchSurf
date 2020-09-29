@@ -37,7 +37,6 @@ const latestBeachLinks = [
 'https://www.surf-forecast.com/breaks/Corals/forecasts/latest/'
 ];
 
-
 //Middleware Function to Check Cache
 // Calibrate once all paths and functionality are working
 // checkCache = (req, res, next) => {
@@ -70,23 +69,18 @@ function getLatest (beachUrl)  {
       const beachName = $('.break-header__title > b')
       const latest = $('.forecast-seo-paragraph')
       const waterTemp =$('.temp').html()
-      //const forecast = $('.forecast-seo-paragraph')
-    
-     
-
-      // client.hmset(beachName.text(), {
-      //   'name': beachName.text(),
-      //   'latest': latest.text(),
-      //   'waterTemp': waterTemp,
-      //   'forecast': forecast.text()
-      // }, function (err, result) {
-      //   if (err) {
-      //     console.log(err)
-      //   } else {
-      //     console.log(result)
-      //   }
-      // });
-
+      
+      client.hmset(beachName.text(), {
+        'name': beachName.text(),
+        'latest': latest.text(),
+        'waterTemp': waterTemp,
+      }, function (err, result) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(result)
+        }
+      });
     }
   })
 }
@@ -101,10 +95,9 @@ function getForecast (beachUrl)  {
       const forecast = $('.forecast-seo-paragraph')
 
       client.hmset(beachName.text(), {
-        //   'name': beachName.text(),
-        //   'latest': latest.text(),
-        //   'waterTemp': waterTemp,
-          'forecast': forecast.text()
+        'forecast': forecast.text(),
+        'name': beachName.text()
+          
         }, function (err, result) {
           if (err) {
             console.log(err)
@@ -176,10 +169,9 @@ app.get("/latest/:id", async(req, res) => {
   });
 })
 
-//const id = 'Pontal'
+
 forecastBeachLinks.forEach(getForecast);
 latestBeachLinks.forEach(getLatest);
-//console.log(client.HGETALL(id))
 
 app.listen(5000, () => {
   console.log(`App is listening on port ${PORT}.`);

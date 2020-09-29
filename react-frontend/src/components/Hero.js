@@ -2,7 +2,9 @@ import React from 'react'
 import '../App.css';
 import './Hero.css';
 
-function Hero() {
+//<img src="BeachPictures\aerea_engenhoca_1600x518.jpg" />
+
+function Hero(props) {
   return (
     <div className='hero-container'>
       <img src="BeachPictures\aerea_engenhoca_1600x518.jpg" />
