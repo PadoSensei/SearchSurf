@@ -42,11 +42,11 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/corals'
+                to='/jeribucacu'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Corals
+                Jeribucacu
               </Link>
             </li>
             <li className='nav-item'>
@@ -69,20 +69,20 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/saojose'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Sao Jose
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
                 to='/tiririca'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
                 Tiririca
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/ribeira'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Ribeira
               </Link>
             </li>
           </ul>

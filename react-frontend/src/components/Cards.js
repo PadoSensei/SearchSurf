@@ -71,10 +71,10 @@ export default class Cards extends Component {
               path='/pontal'
             />
             <CardItem
-              src='BeachPictures\saojose_aerea.jpg'
+              src='BeachPictures\jeribu1.jpg'
               //text={waveInfo}
-              label='Sao Jose'
-              path='/corals'
+              label='Jeribucacu'
+              path='/jeribucacu'
             />
           </ul>
           <ul className='cards__items'>
@@ -91,7 +91,7 @@ export default class Cards extends Component {
               path='/Riberia'
             />
             <CardItem
-              src='BeachPictures\havaizinho_tarek_1600x518.jpg'
+              src='BeachPictures\havaizinho3.jpg'
               //text={this.state.beaches.data.latest}
               label='Havaizinho'
               path='/Havaizinho'

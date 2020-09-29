@@ -8,8 +8,7 @@ import Footer from '../Footer';
 export default function Tiririca() {
   return (
     <>
-      <Hero />
-      <Cards />
+      <Hero src='BeachPictures\tiririca_aereo_tarek.jpg'/>
       <Footer />
     </>
   );
