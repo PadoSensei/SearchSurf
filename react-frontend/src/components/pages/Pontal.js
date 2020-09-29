@@ -9,8 +9,9 @@ import CardItem from '../CardItem'
 export default function Pontal() {
   return (
     <>
-      <Hero src='BeachPictures\aerea_pontal_1600x518.jpg' />
-      <h1>Here's where the info goes</h1>
+      <Hero title='Pontal' src='BeachPictures\aerea_pontal_1600x518.jpg' />
+      <CardItem text='hdehefhiwehfuweh' src='BeachPictures\jeribu4.jpg'/>
+
       <Footer />
     </>
   );

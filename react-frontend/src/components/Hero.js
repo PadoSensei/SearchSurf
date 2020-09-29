@@ -9,7 +9,7 @@ function Hero(props) {
     <div className='hero-container'>
       <img src={props.src} />
       {/* //<video src="/videos/video-2.mp4" autoPlay loop muted /> */}
-      <h1>SURF SEARCH</h1>
+      <h1>{props.title}</h1>
       <p>Find Your Wave!</p>
       
       </div>
