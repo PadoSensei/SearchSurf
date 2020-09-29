@@ -55,7 +55,7 @@ export default class Cards extends Component {
     
     return (
     <div className='cards'>
-      <h1>Welcome to Itacare, where the temperature is currently....</h1>
+      <h1>Welcome to Itacare!!!</h1>
       <p> Check out these EPIC beaches! </p>
       <div className='cards__container'>
         <div className='cards__wrapper'>
@@ -69,7 +69,7 @@ export default class Cards extends Component {
             />
             <CardItem
               src='BeachPictures\itacarezinho_restaurante.jpg'
-              //text='The current surf forecast for Sao Jose at 5PM is: 1.3m 8s primary swell from a East-southeast direction and 1.1m 8s secondary swell from a East direction, 0.2m 8s secondary swell from a South-southeast direction (forecast issued at 02:00pm September 25). The wind direction is predicted to be onshore and the swell rating is 2.'
+              text='The current surf forecast for Sao Jose at 5PM is: 1.3m 8s primary swell from a East-southeast direction and 1.1m 8s secondary swell from a East direction, 0.2m 8s secondary swell from a South-southeast direction (forecast issued at 02:00pm September 25). The wind direction is predicted to be onshore and the swell rating is 2.'
               label='Itacarezinho'
               path='/itacarezinho'
             />
@@ -83,19 +83,19 @@ export default class Cards extends Component {
             />
             <CardItem
               src='BeachPictures\surf_ribeira.jpg'
-              text='Report'
+              text=''
               label='Riberia'
               path='/Riberia'
             />
             <CardItem
               src='BeachPictures\havaizinho3.jpg'
-              //text={this.state.beaches.data.latest}
+              text=''
               label='Havaizinho'
               path='/Havaizinho'
             />
              <CardItem
               src='BeachPictures\jeribu1.jpg'
-              //text={this.state.beaches.data.latest}
+              text=''
               label='Jeribucacu'
               path='/Jeribucacu'
             />
