@@ -3,6 +3,7 @@ import './Cards.css';
 import CardItem from './CardItem';
 import axios from 'axios'
 import { Component } from 'react';
+import RedisClient from './RedisClient';
 
 const urls = [
   'http://localhost:5000/beaches/Ribeira',
@@ -48,6 +49,7 @@ export default class Cards extends Component {
     
     urls.forEach(url => this.beachDataPullFromRedis(url))
     this.dataPushToState(beaches)
+    //console.log(this.state.beaches.Pontal.forecast)
 
   }
   
@@ -66,10 +68,11 @@ export default class Cards extends Component {
               text='The current surf forecast for Sao Jose at 5PM is: 1.3m 8s primary swell from a East-southeast direction and 1.1m 8s secondary swell from a East direction, 0.2m 8s secondary swell from a South-southeast direction (forecast issued at 02:00pm September 25). The wind direction is predicted to be onshore and the swell rating is 2.'
               label='Pontal'
               path='/pontal'
+              
             />
             <CardItem
               src='BeachPictures\itacarezinho_restaurante.jpg'
-              text='The current surf forecast for Sao Jose at 5PM is: 1.3m 8s primary swell from a East-southeast direction and 1.1m 8s secondary swell from a East direction, 0.2m 8s secondary swell from a South-southeast direction (forecast issued at 02:00pm September 25). The wind direction is predicted to be onshore and the swell rating is 2.'
+              text='sued at 02:00pm September 25). The wind direction is predicted to be onshore and the swell rating is 2.'
               label='Itacarezinho'
               path='/itacarezinho'
             />
