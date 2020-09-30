@@ -7,8 +7,8 @@ import './Hero.css';
 function Hero(props) {
   return (
     <div className='hero-container'>
-      <img src={props.src} />
-      {/* //<video src="/videos/video-2.mp4" autoPlay loop muted /> */}
+     {/* // <img src={props.src} /> */}
+      <video src="/videos/intro-loop.mp4" autoPlay loop muted />
       <h1>{props.title}</h1>
       <p>Find Your Wave!</p>
       

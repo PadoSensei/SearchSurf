@@ -34,6 +34,7 @@ p {
   flex: 1;
   margin: 0 1rem;
   border-radius: 10px;
+  
 }
 
 .cards__item__link {
@@ -51,6 +52,7 @@ p {
 .cards__item__pic-wrap {
   position: relative;
   width: 100%;
+  height: 100%;
   padding-top: 67%;
   overflow: hidden;
 }

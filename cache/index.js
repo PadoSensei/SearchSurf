@@ -57,9 +57,6 @@ const latestBeachLinks = [
 //   });
 // };
 
-
-
-
 function getLatest (beachUrl)  {
   request(beachUrl, (error, 
   response, html) => {
@@ -85,94 +82,121 @@ function getLatest (beachUrl)  {
   })
 }
 
-function getForecast (beachUrl)  {
-  request(beachUrl, (error, 
-  response, html) => {
-    if(!error && response.statusCode === 200) {
-      const $ = cheerio.load(html);
+// function getBeachInfoToObject (beachUrl) {
+
+//   const allBeachData = {};
+//   request(beachUrl, (error, 
+//     response, html) => {
+//       if(!error && response.statusCode === 200) {
+//         const $ = cheerio.load(html);
+        
+//         const beachName = $('.break-header__title > b').text()
+//         const forecast = $('.forecast-seo-paragraph').text()
+//         console.log(forecast)
+//         const newBeach = beachName.text()
+//         beachName.text() = {
+//           "forecast": forecast
+//         }
+//         console.log(allBeachData)
+//   return allBeachData;
+//   }
+// })
+// }
+
+// function getForecast (beachUrl)  {
+
+
+//   request(beachUrl, (error, 
+//   response, html) => {
+//     if(!error && response.statusCode === 200) {
+//       const $ = cheerio.load(html);
       
-      const beachName = $('.break-header__title > b')
-      const forecast = $('.forecast-seo-paragraph')
+//       const beachName = $('.break-header__title > b')
+//       const forecast = $('.forecast-seo-paragraph')
 
-      client.hmset(beachName.text(), {
-        'forecast': forecast.text(),
-        'name': beachName.text()
+//       client.hmset(beachName.text(), {
+//         'forecast': forecast.text(),
+//         'name': beachName.text()
           
-        }, function (err, result) {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log(result)
-          }
-        });
+//         }, function (err, result) {
+//           if (err) {
+//             console.log(err)
+//           } else {
+//             console.log(result)
+//           }
+//         });
   
-    }
-  });
-}
+//     }
+//   });
+// }
 
-app.get('/', function(req, res) {
-  //res.send('Welcome to SurfSearch!!!');
+// app.get('/', function(req, res) {
+//   //res.send('Welcome to SurfSearch!!!');
   
-  const target = "Corals"
+//   const target = "Corals"
 
-  client.HGETALL(target, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    //if no match found
-    if (data != null) {
-      res.send(data);
-    } else {
-      //proceed to next middleware function
-      res.send('Sorry, nothing stored. Scraping for data now.....')
-    }
-  });
-})
+//   client.HGETALL(target, (err, data) => {
+//     if (err) {
+//       console.log(err);
+//       res.status(500).send(err);
+//     }
+//     //if no match found
+//     if (data != null) {
+//       res.send(data);
+//     } else {
+//       //proceed to next middleware function
+//       res.send('Sorry, nothing stored. Scraping for data now.....')
+//     }
+//   });
+// })
 
-app.get("/beaches/:id", function(req, res) {
+// app.get("/beaches/:id", function(req, res) {
   
-  const { id } = req.params;
+//   const { id } = req.params;
 
-  client.HGETALL(id, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    //if no match found
-    if (data != null) {
-      res.send(data);
-    } else {
-      //proceed to next middleware function
-      res.send('Sorry, nothing stored. Scraping for data now.....')
-    }
-  });
-})
+//   client.HGETALL(id, (err, data) => {
+//     if (err) {
+//       console.log(err);
+//       res.status(500).send(err);
+//     }
+//     //if no match found
+//     if (data != null) {
+//       res.send(data);
+//     } else {
+//       //proceed to next middleware function
+//       res.send('Sorry, nothing stored. Scraping for data now.....')
+//     }
+//   });
+// })
 
-app.get("/latest/:id", async(req, res) => {
+// app.get("/latest/:id", async(req, res) => {
   
-  const { id } = req.params;
+//   const { id } = req.params;
 
-  client.get(id, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    //if no match found
-    if (data != null) {
-      res.send(data);
-    } else {
-      //proceed to next middleware function
-      res.send('Sorry, need to scrape.')
-      latestBeachLinks.forEach(getLatest);
-    }
-  });
-})
+//   client.get(id, (err, data) => {
+//     if (err) {
+//       console.log(err);
+//       res.status(500).send(err);
+//     }
+//     //if no match found
+//     if (data != null) {
+//       res.send(data);
+//     } else {
+//       //proceed to next middleware function
+//       res.send('Sorry, need to scrape.')
+//       latestBeachLinks.forEach(getLatest);
+//     }
+//   });
+// })
 
+// Run Scripts
+    
 
-forecastBeachLinks.forEach(getForecast);
-latestBeachLinks.forEach(getLatest);
+// forecastBeachLinks.forEach(getForecast);
+// latestBeachLinks.forEach(getLatest);
+//console.log(getBeachInfoToObject(forecastBeachLinks[2]))
 
 app.listen(5000, () => {
   console.log(`App is listening on port ${PORT}.`);
 });
+  

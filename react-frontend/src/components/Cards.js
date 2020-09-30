@@ -4,6 +4,8 @@ import CardItem from './CardItem';
 import axios from 'axios'
 import { Component } from 'react';
 import RedisClient from './RedisClient';
+import * as Promise from "bluebird";
+
 
 const urls = [
   'http://localhost:5000/beaches/Ribeira',
@@ -18,17 +20,39 @@ const urls = [
 const beaches = {}
 
 export default class Cards extends Component {
-  
-  state = {}
-  
-  // we want this to be the entire object
-  dataPushToState = (allTheData) => {
-    this.setState(state => ({
-      beaches: [allTheData]
-    }))
-    console.log('Data pulled into state')
-    
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
+  // we want this to be the entire object
+  // dataPushToState = (allTheData) => {
+  //   this.setState(state => ({
+  //     beaches: [allTheData]
+  //   }))
+  //   console.log('Data pulled into state') 
+  // }
+
+  // dataPushToState = (allTheData) => {
+  //   this.setState({...allTheData})
+  // }
+
+  // fetch(urls[1])
+  //     .then(response => response.json())
+  //     .then(data => beaches.push({ data }))
+    
+  //   fetch(urls[2])
+  //     .then(response => response.json())
+  //     .then(data => beaches.push({ data }))
+    
+  //   fetch(urls[3])
+  //     .then(response => response.json())
+  //     .then(data => beaches.push({ data }))
+    
+  //     console.log('i am the beach store')
+  //     console.log(beaches)
+  //     this.setState({ beaches })
+  //     console.log('DidMOunt State')
+  //     console.log(this.state)
   beachDataPullFromRedis = (url) => {
     
     axios.get(url)
@@ -44,17 +68,19 @@ export default class Cards extends Component {
         console.log(error);
         console.log("no data")
      })
+    //  return beaches
   }
+
   componentDidMount() {
     
-    urls.forEach(url => this.beachDataPullFromRedis(url))
-    this.dataPushToState(beaches)
-    //console.log(this.state.beaches.Pontal.forecast)
-
-  }
+  //console.log(this.beachDataPullFromRedis(urls[2]))
+  urls.forEach(url => this.beachDataPullFromRedis(url))
+  console.log(beaches)
+  this.setState({...beaches})
+}
   
   render () {
-    
+    console.log(this.state)
     return (
     <div className='cards'>
       <h1>Welcome to Itacare!!!</h1>

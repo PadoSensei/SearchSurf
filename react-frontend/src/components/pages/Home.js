@@ -4,12 +4,12 @@ import Cards from '../Cards';
 import Hero from '../Hero';
 import Footer from '../Footer';
 
-
+//src="BeachPictures\aerea_engenhoca_1600x518.jpg"
 
 function Home() {
   return (
     <>
-      <Hero title='Surf Search' src="BeachPictures\aerea_engenhoca_1600x518.jpg"  />
+      <Hero title='Surf Search'   />
       <Cards />
       <Footer />
     </>
