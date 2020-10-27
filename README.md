@@ -4,7 +4,7 @@
 
 <h2>Installation:</h2>
 
-> npm Install
+> npm install
 
 To install, run the above command in both project directories.
 
