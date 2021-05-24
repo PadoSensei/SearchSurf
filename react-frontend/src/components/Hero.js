@@ -12,7 +12,7 @@ function Hero(props) {
       <h1>{props.title}</h1>
       <p>Find Your Wave!</p>
       
-      </div>
+    </div>
   )
 }
 

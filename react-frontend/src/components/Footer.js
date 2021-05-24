@@ -15,7 +15,7 @@ function Footer() {
             </Link>
           </div>
           <small className='website-rights'>SurfSearch © 2020</small>
-          <small className='website-rights'>All images from Itacare.com and Tarek Roveran. </small>
+          <small className='website-rights'>All images from Itacare.com and Tarek Roveran </small>
           <div className='social-icons'>
             <Link
               className='social-icon-link facebook'

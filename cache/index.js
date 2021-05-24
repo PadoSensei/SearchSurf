@@ -1,9 +1,10 @@
 const express = require('express');
 const redis = require('redis');
 const cheerio = require("cheerio");
-const { json } = require('express');
+//const { json } = require('express');
 const request = require('request');
 const cors = require('cors')
+const axios = require("axios");
 
 const PORT = process.env.PORT || 5000;
 const REDIS_PORT = process.env.REDIS_PORT || 6379
@@ -29,13 +30,111 @@ const latestBeachLinks = [
 'https://www.surf-forecast.com/breaks/Sao-Jose/forecasts/latest',
 'https://www.surf-forecast.com/breaks/Jeribucacu/forecasts/latest/',
  'https://www.surf-forecast.com/breaks/Tiririca/forecasts/latest',
- 'https://www.surf-forecast.com/breaks/Itacarezinho/forecasts/latest',
  'https://www.surf-forecast.com/breaks/Engenhoca/forecasts/latest',
-'https://www.surf-forecast.com/breaks/Havaizinho/forecasts/latest',
-'https://www.surf-forecast.com/breaks/Pontal/forecasts/latest/',
-'https://www.surf-forecast.com/breaks/Bocada-Barra/forecasts/latest',
-'https://www.surf-forecast.com/breaks/Corals/forecasts/latest/'
+ 'https://www.surf-forecast.com/breaks/Havaizinho/forecasts/latest',
+ 'https://www.surf-forecast.com/breaks/Pontal/forecasts/latest/',
+ 'https://www.surf-forecast.com/breaks/Bocada-Barra/forecasts/latest',
+ 'https://www.surf-forecast.com/breaks/Corals/forecasts/latest/',
+ 'https://www.surf-forecast.com/breaks/Itacarezinho/forecasts/latest',
 ];
+
+function Beach(name, sixDayForecast, waterTemp, latest) {
+  this.name = name;
+  this.sixDayForecast = sixDayForecast;
+  this.waterTemp = waterTemp;
+  this.latest = latest
+}
+
+
+function getLatest (raw, beachOBj)  {
+
+      //const beachName = $('.break-header__title > b')
+      const latest = raw('.forecast-seo-paragraph').text()
+      const waterTemp =raw('.temp').html()
+      beachOBj.latest = latest
+      beachOBj.waterTemp = waterTemp
+    }
+
+function getForecast (raw, beachOBj)  {
+
+      //const beachName = $('.break-header__title > b')
+      const beachName = raw('.break-header__title > b').text()
+      const forecast = raw('.forecast-seo-paragraph').text()
+      beachOBj.name = beachName
+      beachOBj.sixDayForecast = forecast
+    }
+    
+ 
+
+// function getForecast (beachUrl, beachOBj)  {
+//   request(beachUrl, (error, 
+//   response, html) => {
+//     if(!error && response.statusCode === 200) {
+//       const $ = cheerio.load(html);
+      
+//       
+      
+//       arrayOfBeaches.push(beachOBj)
+    
+//     }
+    
+//   })
+//   console.log("this all of them?..........."  + arrayOfBeaches)
+// }
+
+const latestRaw = []
+const forecastRaw = []
+const fullBeachData = []
+
+const getData = async () => {
+
+  for (let i = 0; i < forecastBeachLinks.length; i++) {
+    
+    const newBeach = new Beach()
+    //getForecast(forecastBeachLinks[i], newBeach)
+    //getLatest(latestBeachLinks[i], newBeach)
+    const resultLatest = await axios.get(latestBeachLinks[i])
+    const resultForecast = await axios.get(forecastBeachLinks[i])
+    let $Latest = cheerio.load(resultLatest.data); 
+    let $Forecast = cheerio.load(resultForecast.data); 
+    latestRaw.push($Latest)
+    getLatest($Latest, newBeach)
+    forecastRaw.push($Forecast)
+    getForecast($Forecast, newBeach)
+    fullBeachData.push(newBeach)
+    
+    console.log(newBeach)
+  }
+    pushObjToRedis(fullBeachData)
+}
+
+
+      
+async function pushObjToRedis(obj) {
+
+  try {
+      const key = 'beachData';
+      const result = await client.set(key, JSON.stringify(obj));
+
+      // Turn around and bring back Shamu immediately to prove it works.
+      const shamuReturns = JSON.parse(await client.get(key));
+      console.log(shamuReturns);
+  } catch (error) {
+      console.error(error);
+  }
+  //client.disconnect();
+}
+     
+getData()
+
+
+
+app.listen(5000, () => {
+  console.log(`App is listening on port ${PORT}.`);
+});
+
+
+
 
 //Middleware Function to Check Cache
 // Calibrate once all paths and functionality are working
@@ -57,78 +156,6 @@ const latestBeachLinks = [
 //   });
 // };
 
-function getLatest (beachUrl)  {
-  request(beachUrl, (error, 
-  response, html) => {
-    if(!error && response.statusCode === 200) {
-      const $ = cheerio.load(html);
-      
-      const beachName = $('.break-header__title > b')
-      const latest = $('.forecast-seo-paragraph')
-      const waterTemp =$('.temp').html()
-      
-      client.hmset(beachName.text(), {
-        'name': beachName.text(),
-        'latest': latest.text(),
-        'waterTemp': waterTemp,
-      }, function (err, result) {
-        if (err) {
-          console.log(err)
-        } else {
-          console.log(result)
-        }
-      });
-    }
-  })
-}
-
-// function getBeachInfoToObject (beachUrl) {
-
-//   const allBeachData = {};
-//   request(beachUrl, (error, 
-//     response, html) => {
-//       if(!error && response.statusCode === 200) {
-//         const $ = cheerio.load(html);
-        
-//         const beachName = $('.break-header__title > b').text()
-//         const forecast = $('.forecast-seo-paragraph').text()
-//         console.log(forecast)
-//         const newBeach = beachName.text()
-//         beachName.text() = {
-//           "forecast": forecast
-//         }
-//         console.log(allBeachData)
-//   return allBeachData;
-//   }
-// })
-// }
-
-// function getForecast (beachUrl)  {
-
-
-//   request(beachUrl, (error, 
-//   response, html) => {
-//     if(!error && response.statusCode === 200) {
-//       const $ = cheerio.load(html);
-      
-//       const beachName = $('.break-header__title > b')
-//       const forecast = $('.forecast-seo-paragraph')
-
-//       client.hmset(beachName.text(), {
-//         'forecast': forecast.text(),
-//         'name': beachName.text()
-          
-//         }, function (err, result) {
-//           if (err) {
-//             console.log(err)
-//           } else {
-//             console.log(result)
-//           }
-//         });
-  
-//     }
-//   });
-// }
 
 // app.get('/', function(req, res) {
 //   //res.send('Welcome to SurfSearch!!!');
@@ -188,15 +215,3 @@ function getLatest (beachUrl)  {
 //     }
 //   });
 // })
-
-// Run Scripts
-    
-
-// forecastBeachLinks.forEach(getForecast);
-// latestBeachLinks.forEach(getLatest);
-//console.log(getBeachInfoToObject(forecastBeachLinks[2]))
-
-app.listen(5000, () => {
-  console.log(`App is listening on port ${PORT}.`);
-});
-  

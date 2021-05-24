@@ -1,7 +1,7 @@
 import React from 'react';
 import './Cards.css';
 import CardItem from './CardItem';
-import axios from 'axios'
+//import axios from 'axios'
 import { Component } from 'react';
 
 const urls = [
@@ -50,30 +50,30 @@ export default class Cards extends Component {
   //     this.setState({ beaches })
   //     console.log('DidMOunt State')
   //     console.log(this.state)
-  beachDataPullFromRedis = (url) => {
+  // beachDataPullFromRedis = (url) => {
     
-    axios.get(url)
-     .then(response => {
+  //   axios.get(url)
+  //    .then(response => {
       
-      beaches[response.data.name] = {
-        "latest": response.data.latest,
-        "forecast": response.data.forecast,
-        "waterTemp": response.data.waterTemp
-      }
-     })
-     .catch((error) => {
-        console.log(error);
-        console.log("no data")
-     })
-    //  return beaches
-  }
+  //     beaches[response.data.name] = {
+  //       "latest": response.data.latest,
+  //       "forecast": response.data.forecast,
+  //       "waterTemp": response.data.waterTemp
+  //     }
+  //    })
+  //    .catch((error) => {
+  //       console.log(error);
+  //       console.log("no data")
+  //    })
+  //   //  return beaches
+  // }
 
   componentDidMount() {
     
   //console.log(this.beachDataPullFromRedis(urls[2]))
-  urls.forEach(url => this.beachDataPullFromRedis(url))
-  console.log(beaches)
-  this.setState({...beaches})
+  // urls.forEach(url => this.beachDataPullFromRedis(url))
+  // console.log(beaches)
+  // this.setState({...beaches})
 }
   
   render () {
