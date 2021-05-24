@@ -29,9 +29,21 @@ video {
   opacity: 0.8;
 }
 
-.beach-info {
+.beach-container {
   color: rgb(253, 253, 253);
-  background-color: aqua;
+
   color: black;
   opacity: 1;
+}
+
+.beach-info {
+  color: whitesmoke;
+  opacity: 1;
+}
+
+.beach-img-container {
+}
+
+.beach-img {
+  object-fit: cover;
 }
