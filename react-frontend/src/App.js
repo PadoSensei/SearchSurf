@@ -1,14 +1,15 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Pontal from './pages/Pontal';
 import Tiririca from './/pages/Tiririca';
 import Itacarezinho from './pages/Itacarezinho'
 import Havaizinho from './pages/Havaizinho';
 import Jeribucacu from './pages/Jeribucacu';
 import Ribeira from './pages/Ribeira';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='/itacarezinho' component={Itacarezinho} />
           <Route path='/ribeira' component={Ribeira} />
         </Switch>
+        <Footer />
       </Router>
     </>
   );

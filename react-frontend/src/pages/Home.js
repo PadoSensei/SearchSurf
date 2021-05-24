@@ -9,8 +9,6 @@ function Home() {
   return (
     <>
       <Hero title='Surf Search'   />
-      <Cards />
-      <Footer />
     </>
   );
 }
