@@ -23,7 +23,7 @@ function getForecast (raw, beachOBj)  {
   beachOBj.sixDayForecast = forecast
 }
 
-const getData = async (client) => {
+const scrapeData = async (client) => {
 
   const latestRaw = [];
   const forecastRaw = [];
@@ -48,17 +48,19 @@ const getData = async (client) => {
     getForecast($Forecast, newBeach)
 
     fullBeachData.push(newBeach)
+    const redisName =newBeach.name
+    pushObjToRedis(redisName, newBeach, client)
     
   }
     //push to Redis
-    pushObjToRedis(fullBeachData, client)
+    pushObjToRedis('beachData',fullBeachData, client)
    
 }
 
-async function pushObjToRedis(obj, client) {
+async function pushObjToRedis(key, obj, client) {
 
   try {
-      const key = 'BeachData';
+      //const key = 'BeachData';
       await client.set(key, JSON.stringify(obj));
 
       // Turn around and test immediately to prove it works.
@@ -72,5 +74,11 @@ async function pushObjToRedis(obj, client) {
   //client.disconnect();
 }
 
+async function getDataFromRedis(client){
+ client.get('BeachData', function(err, reply) {
+  console.log(reply)
+ })
+}
 
-module.exports = { Beach, getForecast, getLatest, getData, pushObjToRedis }
+
+module.exports = { Beach, getForecast, getLatest, scrapeData, pushObjToRedis, getDataFromRedis }

@@ -1,6 +1,6 @@
 .footer-container {
   background-color: #242424;
-  padding: 4rem 0 2rem 0;
+  padding: 1rem 0 2rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,8 +20,8 @@
 }
 
 .footer-subscription > p {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .footer-subscription-heading {
@@ -35,7 +35,7 @@
 }
 
 .footer-input {
-  padding: 8px 20px;
+  padding: 8px 15px;
   border-radius: 2px;
   margin-right: 10px;
   outline: none;

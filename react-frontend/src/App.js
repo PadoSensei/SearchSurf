@@ -8,11 +8,11 @@ import Tiririca from './/pages/Tiririca';
 import Itacarezinho from './pages/Itacarezinho'
 import Havaizinho from './pages/Havaizinho';
 import Jeribucacu from './pages/Jeribucacu';
-import Ribeira from './pages/Ribeira';
+import Corals from './pages/Corals';
 import Footer from './components/Footer';
 
-
 function App() {
+
   return (
     <>
       <Router>
@@ -24,7 +24,7 @@ function App() {
           <Route path='/havaizinho' component={Havaizinho} />
           <Route path='/tiririca' component={Tiririca} />
           <Route path='/itacarezinho' component={Itacarezinho} />
-          <Route path='/ribeira' component={Ribeira} />
+          <Route path='/corals' component={Corals} />
         </Switch>
         <Footer />
       </Router>

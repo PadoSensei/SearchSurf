@@ -1,18 +1,17 @@
 import React, {useState, useEffect } from 'react';
 import '../App.css';
 import Beach from '../components/Beach';
-import image from '../images/tiririca.jpg';
+import image from '../images/ribeira.jpg';
 import axios from "axios";
 
-
-export default function Tiririca() {
+export default function Corals() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const link = 'http://localhost:5000/tiririca'
-  const text ='Tiririca is an exposed beach break that has reliable surf and can work at any time of the year.'
-
+  const text = 'A lovely beach surrounded by tropical rainforest, Riberia is the last beach on main road to Itacare and the most visited beach during the weekends and high season.'
+  const link = 'http://localhost:5000/corals'
+  
   useEffect(() => {
     getData(link)
     }, []);
@@ -35,10 +34,10 @@ export default function Tiririca() {
 
   if (loading) return "Loading...";
   if (error) return "Error!";
-
+  
   return (
     <>
-      <Beach title='Tiririca' image={image} text={text} latest={data.latest} forecast={data.sixDayForecast} />
+      <Beach title='Corals' image={image} text={text} latest={data.latest} forecast={data.sixDayForecast} />
     </>
   );
 }

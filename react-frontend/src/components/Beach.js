@@ -2,7 +2,7 @@ import React from 'react'
 import '../App.css';
 import './Beach.css';
 
-function Beach({title, image, text}) {
+function Beach({title, image, text, latest, forecast}) {
   return (
     <div className='hero-container'>
       <video src="/videos/intro-loop.mp4" autoPlay loop muted />
@@ -12,11 +12,11 @@ function Beach({title, image, text}) {
             <img className="beach-img" src={image} height="15%" width="100%" />
             <div className="beach-info">
               <h1 className="beach-title">{title}</h1>
-              <p>{text}</p>
+                {/* <p>{text}</p> */}
               <br />
-              <p>This is the latest surf info.</p>
+              <p>{latest}</p>
               <br />
-              <p>This is the 6 day forecast.</p>
+              <p>{forecast}</p>
             </div>
           </div>
         </div>
