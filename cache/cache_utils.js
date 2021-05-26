@@ -11,16 +11,18 @@ function Beach(name, sixDayForecast, waterTemp, latest) {
 
 function getLatest (raw, beachOBj)  {
   const latest = raw('.forecast-seo-paragraph').text()
+  const whereIsTarget = latest.indexOf('?')
   const waterTemp =raw('.temp').html()
-  beachOBj.latest = latest
+  beachOBj.latest = latest.slice(whereIsTarget + 1)
   beachOBj.waterTemp = waterTemp
 }
 
 function getForecast (raw, beachOBj)  {
   const beachName = raw('.break-header__title > b').text()
   const forecast = raw('.forecast-seo-paragraph').text()
+  const whereToStripFrom = forecast.indexOf('days')
   beachOBj.name = beachName
-  beachOBj.sixDayForecast = forecast
+  beachOBj.sixDayForecast = forecast.slice(whereToStripFrom + 5)
 }
 
 const scrapeData = async (client) => {
