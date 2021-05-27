@@ -1,4 +1,5 @@
 const express = require('express');
+require("dotenv").config();
 const redis = require('redis');
 
 const cors = require('cors')
@@ -6,9 +7,15 @@ const cors = require('cors')
 const { scrapeData } = require('./cache_utils')
 
 const PORT = process.env.PORT || 5000;
-const REDIS_PORT = process.env.REDIS_PORT || 6379
+//const REDIS_PORT = process.env.REDIS_PORT || 6379
 
-const client = redis.createClient(REDIS_PORT);
+//const client = redis.createClient(REDIS_PORT);
+
+const client = redis.createClient({
+  host: process.env.REDIS_HOSTNAME,
+  port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD
+});
 
 const app = express();
 app.use(cors())
@@ -64,6 +71,10 @@ app.listen(5000, () => {
 //Pass Redis to data scraping app
 scrapeData(client)
 
+// Redis PW
+// KCF4P553bcLMjivPchXJSW68zAmMlWBL
+// Redis Endpoint
+// redis-18321.c247.eu-west-1-1.ec2.cloud.redislabs.com:18321
 
 //Middleware Function to Check Cache
 // Calibrate once all paths and functionality are working
