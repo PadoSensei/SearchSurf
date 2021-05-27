@@ -11,7 +11,7 @@ export default function Itacarezinho() {
   const [error, setError] = useState(null);
 
   const text = 'Itacarezinho is an exposed beach and reef break that has pretty consitent surf. Summer offers the best conditions for surfing. The best wind direction is from the west northwest. Tends to receive a mix of groundswells and windswells and the best swell direction is from the east southeast. The beach break offers both left and right hand waves. Even when there are waves, unlikley to be crowded. Dangerous rips are a hazard of surfing here.'
-  const link = 'http://localhost:5000/itacarezinho'
+  const link = 'https://serverless-surf.netlify.app/.netlify/functions/index/itacarezinho'
 
   useEffect(() => {
     getData(link)

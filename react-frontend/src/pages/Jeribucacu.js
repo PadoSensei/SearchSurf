@@ -11,7 +11,7 @@ export default function Jeribucacu() {
   const [error, setError] = useState(null);
   
   const text = 'Surfable waves that hold up well for longer rides in prevailing cross-offshore, offshore or light wind conditions.'
-  const link= 'http://localhost:5000/havaizinho'
+  const link= 'https://serverless-surf.netlify.app/.netlify/functions/index/Jeribucacu'
 
   useEffect(() => {
     getData(link)

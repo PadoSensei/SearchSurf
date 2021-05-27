@@ -4,7 +4,7 @@ import Beach from '../components/Beach';
 import image from '../images/pontal2.jpg';
 import axios from "axios";
 
-const link = 'http://localhost:5000/pontal'
+const link = 'https://serverless-surf.netlify.app/.netlify/functions/index/pontal'
 
 export default function Pontal() {
   const [data, setData] = useState(null);

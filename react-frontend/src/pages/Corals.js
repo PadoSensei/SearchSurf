@@ -10,7 +10,7 @@ export default function Corals() {
   const [error, setError] = useState(null);
 
   const text = 'A lovely beach surrounded by tropical rainforest, Riberia is the last beach on main road to Itacare and the most visited beach during the weekends and high season.'
-  const link = 'http://localhost:5000/corals'
+  const link = 'https://serverless-surf.netlify.app/.netlify/functions/index/corals'
   
   useEffect(() => {
     getData(link)

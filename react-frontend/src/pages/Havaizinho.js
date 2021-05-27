@@ -10,7 +10,7 @@ export default function Havaizinho() {
   const [error, setError] = useState(null);
   
   const text='Havaizinho offers both left and right hand waves. Rarely crowded here. Hazards include rocks and rips.'
-  const link='http://localhost:5000/havaizinho'
+  const link='https://serverless-surf.netlify.app/.netlify/functions/index/havaizinho'
 
   useEffect(() => {
     getData(link)
