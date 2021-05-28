@@ -17,11 +17,12 @@ video {
   object-fit: contain;
 }
 .beach-overlay {
-  height: 80%;
-  width: 80%;
+  /* height: 80%;
+  width: 80%; */
   background-color: black;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   opacity: 0.8;
+  overflow: hidden;
 }
 
 .beach-container {

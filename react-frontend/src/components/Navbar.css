@@ -8,7 +8,6 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  
 }
 
 .navbar-container {
@@ -74,6 +73,12 @@
 
 .menu-icon {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-logo {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 960px) {
